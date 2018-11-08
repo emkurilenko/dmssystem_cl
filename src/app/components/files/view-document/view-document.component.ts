@@ -17,7 +17,7 @@ export class ViewDocumentComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   // urlOffice = 'https://view.officeapps.live.com/op/embed.aspx?src=http://dmsystemapi.herokuapp.com/api/document/download/';
   urlOffice = 'https://docs.google.com/viewer?url=http://dmsystemapi.herokuapp.com/api/document/download/';
-  urlDownload = 'https://dmsystemapi.herokuapp.com/';
+  urlDownload = 'https://dmsystemapi.herokuapp.com/api/document/download/';
   constructor(private router: Router, private sanitizer: DomSanitizer, private service: DocumentService) { }
 
   ngOnInit() {
