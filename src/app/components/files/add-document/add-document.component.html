@@ -1,0 +1,56 @@
+<div class="col">
+    <h2 class="text-center">Новый файл</h2>
+    <form [formGroup]="newDocumentForm" (ngSubmit)="createNewDocument()" novalidate>
+      <fieldset>
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="description">Автор:</label>
+          <div class="col-md-5">
+            <input class="form-control" id="publisher" formControlName="publisher" required>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="description">Описание:</label>
+          <div class="col-md-5">
+            <textarea class="form-control" id="description" formControlName="description" required></textarea>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="description">Теги:</label>
+          <div class="col-md-5">
+            <tag-input [(ngModel)]="tagsItems" [editable]="true" [ngModelOptions]="{standalone: true}">
+            </tag-input>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="file" translate>Дата создания:</label>
+          <div class="col-md-5">
+            <input [(ngModel)]="creationDate" matInput [matDatepicker]="picker" placeholder="Choose a date" [ngModelOptions]="{standalone: true}">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="file" translate>Файл:</label>
+          <div class="col-md-5">
+            <input type="file" id="file" class="form-control-file" (change)="fileToUpload = $event.target.files.item(0)"
+              [accept]="acceptedFileTypes" required>
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <div class="offset-md-2 col-md-10">
+            <button type="submit" class="btn btn-success mr-2" [disabled]="!fileToUpload" translate>
+              Сохранить
+            </button>
+            <button class="btn btn-primary" routerLink="list-file">Назад</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>

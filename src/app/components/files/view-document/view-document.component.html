@@ -1,0 +1,53 @@
+<div style="height: 80vh; width: 100%;" class="row flex">
+  <div class="col-9">
+    <iframe [src]="getSecURL()" frameborder='0' width='100%' height='100%'></iframe>
+    <a href={{urlOffice}} target="_blank">
+      <button type="button" class="btn btn-primary">Просмотреть файл в новом окне</button>
+    </a>
+  </div>
+  <div class="col-3">
+    <div class="form-group row">
+      <label for="nameFile">Название файла:</label>
+      <input type="text" name="nameFile" id="nameFile" class="form-control" readonly value="{{documentInfo.fileName}}">
+    </div>
+    <div class="form-group row">
+      <label for="description">Описание:</label>
+      <textarea name="description" id="description" class="form-control" readonly>{{documentInfo.description}}</textarea>
+    </div>
+    <div class="form-group row">
+      <label for="publisher">Автор:</label>
+      <input type="text" name="publisher" id="publisher" class="form-control" placeholder="" value="{{documentInfo.publisher}}"
+        readonly>
+    </div>
+
+    <div class="form-group row">
+      <label for="creationDate">Дата создания:</label>
+      <input type="text" name="creationDate" id="creationDate" class="form-control" placeholder="" value="{{documentInfo.creationDate | date: 'dd.MM.yyyy'}}"
+        readonly>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="creationDate">Дата обновления:</label>
+      <input type="text" name="creationDate" id="creationDate" class="form-control" placeholder="" value="{{documentInfo.updateDate | date: 'dd.MM.yyyy'}}"
+        readonly>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label" for="tags">Теги:</label>
+      <div id="tags">
+        <tag-input [ngModel]="documentInfo.tags" [displayBy]="'name'" theme='bootstrap' [modelAsStrings]="true"
+          (onSelect)="onSelect($event)" [removable]='false' (onAdd)="onItemAdded($event)">
+        </tag-input>
+      </div>
+    </div>
+    <div class="row">
+      <a href="{{urlDownload}}">
+        <button type="button" class="btn btn-success" (click)="saveToComp()">Скачать</button>
+      </a>
+
+      <button type="button" class="btn btn-info" (click)="updateItem()">Изменить</button>
+      <button type="button" class="btn btn-primary" (click)="backToList()">Назад</button>
+    </div>
+  </div>
+</div>

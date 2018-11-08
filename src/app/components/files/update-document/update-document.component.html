@@ -1,0 +1,44 @@
+<div class="col">
+  <h2 class="text-center">Редактирование</h2>
+  <form [formGroup]="updateForm" (ngSubmit)="updateItem()">
+
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label" for="fileName">Имя документа:</label>
+      <div class="col-md-5">
+        <input type="text" name="fileName" id="fileName" class="form-control" required formControlName="fileName">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label" for="publisher">Автор:</label>
+      <div class="col-md-5">
+        <input class="form-control" id="publisher" name="publisher" formControlName="publisher" required >
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label" for="description">Описание:</label>
+      <div class="col-md-5">
+          <textarea name="description" id="description" class="form-control" formControlName="description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label" for="tags">Теги:</label>
+      <div id="tags">
+        <tag-input [ngModel]="documentInfo.tags" [displayBy]="'name'" theme='bootstrap' [modelAsStrings]="true" (onAdd)="onTagAdded($event)" (onRemove)="onItemRemove($event)" [ngModelOptions]="{standalone: true}">
+        </tag-input>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="offset-md-2 col-md-10">
+        <button type="submit" class="btn btn-success mr-2">
+          Сохранить
+        </button>
+        <button class="btn btn-primary" routerLink="list-file">Назад</button>
+      </div>
+    </div>
+  </form>
+</div>

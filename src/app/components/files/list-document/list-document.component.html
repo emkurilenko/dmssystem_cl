@@ -1,0 +1,65 @@
+<div class="row">
+
+  <div class="col">
+    <label>Поиск/Фильтрация </label>
+    <div class="form-group">
+      <label for="searchByTag">Поиск по тегу: </label>
+      <input id="searchByTag" type="text" [(ngModel)]="searchByNameTag" class="form-control" placeholder="by tag">
+    </div>
+
+    <div class="form-group">
+      <label for="searchByName">Поиск по имени документа:</label>
+      <input type="text" id="searchByName" [(ngModel)]="searchByNameDoc" class="form-control" placeholder="by name">
+    </div>
+  </div>
+
+  <div class="col-9">
+    <div class="col">
+      <button class="btn btn-primary" (click)="createDocument()">Добавить документ</button>
+    </div>
+    <table class="table table-stripped">
+      <thead class="thead-dark">
+        <th class="hidden">Id</th>
+        <th>Имя файла</th>
+        <th>Автор</th>
+        <th>Дата сохранения</th>
+        <th>Теги</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of documentInfo | documentTagFilter:searchByNameTag | documentNameFilter:searchByNameDoc">
+          <td class="hidden">{{item.id}}</td>
+          <td>{{item.fileName}}</td>
+          <td>{{item.publisher}}</td>
+          <td>{{item.creationDate | date:'dd.MM.yyyy'}}</td>
+          <td>
+            <tag-input [ngModel]="item.tags" [displayBy]="'name'" theme='bootstrap' [modelAsStrings]="true" (onSelect)="onSelectTag($event)"
+              (onAdd)="onItemAdded($event, item.id)" (onRemove)="onItemRemove($event, item.id)">
+            </tag-input>
+          </td>
+          <td>
+            <a href={{urlOffice+item.id}} target="_blank">
+              <button class="btn" (click)="viewFile(item.id)">
+                Просмотреть файл <span class="badge badge-primary"></span>
+              </button>
+            </a>
+            <button type="button" class="btn btn-info" (click)="viewDocument(item)">
+              Подробнее
+            </button>
+            <button type="button" class="btn btn-danger" (click)="deleteDocument(item)">
+              Удалить
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item" *ngFor="let p of pages; let i=index">
+        <a href="" class="nav-link" (click)="setPage(i,$event)" [ngClass]="{'active': i==page}">{{i}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
