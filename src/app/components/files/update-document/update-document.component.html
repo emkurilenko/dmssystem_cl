@@ -27,7 +27,7 @@
     <div class="form-group row">
       <label class="col-md-2 col-form-label" for="tags">Теги:</label>
       <div id="tags">
-        <tag-input [ngModel]="documentInfo.tags" [displayBy]="'name'" theme='bootstrap' [modelAsStrings]="true" (onAdd)="onTagAdded($event)" (onRemove)="onItemRemove($event)" [ngModelOptions]="{standalone: true}">
+        <tag-input [ngModel]="documentInfo.tags" [displayBy]="'name'" theme='bootstrap' [modelAsStrings]="true" (onAdd)="onTagAdded($event)" (onRemove)="onTagRemove($event)" [ngModelOptions]="{standalone: true}">
         </tag-input>
       </div>
     </div>

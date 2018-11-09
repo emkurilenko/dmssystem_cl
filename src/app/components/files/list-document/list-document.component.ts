@@ -17,8 +17,8 @@ export class ListDocumentComponent implements OnInit {
   documentInfo: DocumentInfo[];
   searchByNameTag: string;
   searchByNameDoc: string;
-  private page = 0;
-  private pages: Array<number>;
+  page = 0;
+  pages: Array<number>;
 
   constructor(private router: Router, private service: DocumentService) { }
 
