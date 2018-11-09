@@ -32,6 +32,10 @@ export class ViewDocumentComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.urlOffice + this.documentInfo.id.toString() + '&embedded=true');
   }
 
+  getUrl() {
+    return this.urlOffice + this.documentInfo.id.toString();
+  }
+
   public onSelect(item) {
     console.log('tag selected: value is ' + item.name);
   }
